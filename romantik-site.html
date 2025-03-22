@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aşkımızın Hikayesi</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+    
+    body {
+      background-color: #1a0505;
+      color: #ffffff;
+      overflow-x: hidden;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Cpath fill='%23ff6699' fill-opacity='0.1' d='M25,0 C25,10 40,10 40,25 C40,40 25,40 25,50 C25,40 10,40 10,25 C10,10 25,10 25,0'/%3E%3C/svg%3E");
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header {
+      text-align: center;
+      padding: 70px 0 50px;
+      background: linear-gradient(to bottom, #400101, #800000);
+      border-bottom: 3px solid #ff9999;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      margin-bottom: 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .fancy-title {
+      display: inline-block;
+      position: relative;
+      font-size: 3.8rem;
+      font-family: 'Brush Script MT', cursive;
+      color: #ff4f79;
+      text-shadow: 3px 3px 6px #000000;
+      margin-bottom: 20px;
+      letter-spacing: 3px;
+      transform: rotate(-2deg);
+      animation: glow 2s infinite alternate;
+    }
+    
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff4f79, 0 0 20px #ff4f79;
+      }
+      to {
+        text-shadow: 0 0 10px #fff, 0 0 15px #ff80ab, 0 0 20px #ff80ab, 0 0 25px #ff80ab;
+      }
+    }
+    
+    .fancy-title:before,
+    .fancy-title:after {
+      content: "❀";
+      position: absolute;
+      font-size: 2rem;
+      color: #ff80ab;
+    }
+    
+    .fancy-title:before {
+      left: -40px;
+      top: 10px;
+      transform: rotate(-20deg);
+    }
+    
+    .fancy-title:after {
+      right: -40px;
+      top: 10px;
+      transform: rotate(20deg);
+    }
+    
+    .subtitle {
+      font-size: 1.4rem;
+      color: #ffd1dc;
+      font-style: italic;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 2px #000;
+    }
+    
+    .header-flowers {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .flower {
+      position: absolute;
+      font-size: 1.5rem;
+      opacity: 0.7;
+    }
+    
+    .flower-1 { top: 10%; left: 10%; animation: float 5s ease-in-out infinite; }
+    .flower-2 { top: 20%; right: 15%; animation: float 7s ease-in-out infinite; }
+    .flower-3 { bottom: 30%; left: 20%; animation: float 6s ease-in-out infinite; }
+    .flower-4 { bottom: 10%; right: 10%; animation: float 8s ease-in-out infinite; }
+    .flower-5 { top: 40%; left: 30%; animation: float 9s ease-in-out infinite; }
+    
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(5deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+    
+    .film-strip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 120px;
+      padding-bottom: 100px;
+      position: relative;
+    }
+    
+    .hello-kitty {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      z-index: 2;
+      filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.5));
+    }
+    
+    .kitty-1 {
+      top: 50px;
+      left: 5%;
+      transform: rotate(-10deg);
+    }
+    
+    .kitty-2 {
+      top: 400px;
+      right: 5%;
+      transform: rotate(10deg);
+    }
+    
+    .kitty-3 {
+      top: 800px;
+      left: 8%;
+      transform: rotate(-5deg);
+    }
+    
+    .kitty-4 {
+      top: 1200px;
+      right: 8%;
+      transform: rotate(5deg);
+    }
+    
+    .frame {
+      width: 80%;
+      background-color: #300808;
+      border: 10px solid #400;
+      border-radius: 5px;
+      position: relative;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .frame:before {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 100%;
+      background-image: repeating-linear-gradient(to bottom, transparent, transparent 15px, #3d0000 15px, #3d0000 30px);
+      left: -30px;
+      top: 0;
+    }
+    
+    .frame:after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 100%;
+      background-image: repeating-linear-gradient(to bottom, transparent, transparent 15px, #3d0000 15px, #3d0000 30px);
+      right: -30px;
+      top: 0;
+    }
+    
+    .note {
+      background-color: #ffe6ea;
+      color: #d81b60;
+      padding: 20px;
+      transform: rotate(-2deg);
+      position: relative;
+      margin: 20px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    .note:before {
+      content: "";
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      width: 30px;
+      height: 30px;
+      background-color: #c2185b;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 15% 50%);
+      transform: rotate(45deg);
+    }
+    
+    .note:after {
+      content: "❀";
+      position: absolute;
+      bottom: 5px;
+      right: 10px;
+      color: rgba(210, 27, 96, 0.3);
+      font-size: 20px;
+    }
+    
+    .note .title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+      color: #ad1457;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      font-family: 'Georgia', serif;
+      letter-spacing: 1px;
+    }
+    
+    .note p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #880e4f;
+    }
+    
+    .photo-space {
+      background-color: #111;
+      width: 100%;
+      height: 300px;
+      margin: 30px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 5px solid #333;
+      position: relative;
+    }
+    
+    .photo-space:before {
+      content: "❀";
+      position: absolute;
+      top: -15px;
+      left: 15px;
+      color: #ff4081;
+      font-size: 24px;
+      background: #300808;
+      padding: 0 10px;
+    }
+    
+    .photo-space img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    
+    .torn-paper {
+      position: relative;
+      background-color: #fff0f3;
+      color: #c2185b;
+      padding: 30px;
+      margin: 40px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    .torn-paper:before {
+      content: "";
+      position: absolute;
+      top: -20px;
+      left: 0;
+      right: 0;
+      height: 20px;
+      background-color: #fff0f3;
+      clip-path: polygon(
+        0% 100%, 5% 90%, 10% 100%, 15% 90%, 20% 100%, 25% 90%, 
+        30% 100%, 35% 90%, 40% 100%, 45% 90%, 50% 100%, 55% 90%, 
+        60% 100%, 65% 90%, 70% 100%, 75% 90%, 80% 100%, 85% 90%, 
+        90% 100%, 95% 90%, 100% 100%
+      );
+    }
+    
+    .torn-paper:after {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      left: 0;
+      right: 0;
+      height: 20px;
+      background-color: #fff0f3;
+      clip-path: polygon(
+        0% 0%, 5% 10%, 10% 0%, 15% 10%, 20% 0%, 25% 10%, 
+        30% 0%, 35% 10%, 40% 0%, 45% 10%, 50% 0%, 55% 10%, 
+        60% 0%, 65% 10%, 70% 0%, 75% 10%, 80% 0%, 85% 10%, 
+        90% 0%, 95% 10%, 100% 0%
+      );
+    }
+    
+    .torn-paper .title {
+      font-weight: bold;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: #ad1457;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      font-family: 'Georgia', serif;
+      letter-spacing: 1px;
+    }
+    
+    .torn-paper p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #880e4f;
+    }
+    
+    .heart-border {
+      border: 3px solid #ff4081;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      position: relative;
+      background-color: rgba(255, 64, 129, 0.05);
+    }
+    
+    .heart-border:before {
+      content: "♥";
+      position: absolute;
+      top: -15px;
+      left: 20px;
+      background-color: #300808;
+      color: #ff4081;
+      padding: 0 10px;
+      font-size: 24px;
+    }
+    
+    .heart-border .title {
+      font-weight: bold;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: #ff4081;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+      font-family: 'Georgia', serif;
+      letter-spacing: 1px;
+    }
+    
+    .heart-border p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #f8bbd0;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 50px 0;
+      background: linear-gradient(to top, #400101, #800000);
+      border-top: 3px solid #ff9999;
+      margin-top: 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    footer .flower {
+      color: #ff80ab;
+    }
+    
+    .footer-kitty {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 60px;
+      margin-top: 20px;
+    }
+    
+    .visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    @media (max-width: 768px) {
+      .frame {
+        width: 95%;
+      }
+      
+      .fancy-title {
+        font-size: 2.7rem;
+      }
+      
+      .hello-kitty {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-flowers">
+      <div class="flower flower-1">❀</div>
+      <div class="flower flower-2">✿</div>
+      <div class="flower flower-3">❁</div>
+      <div class="flower flower-4">✾</div>
+      <div class="flower flower-5">❃</div>
+    </div>
+    <div class="container">
+      <h1 class="fancy-title">Seni Çok Sevıyorummmmm</h1>
+      <p class="subtitle">İlişkimizin Başında Çok Belirtiyordun Bende Elimden Geleni Yaptımm</p>
+    </div>
+  </header>
+  
+  <div class="container">
+    <div class="film-strip">
+      <div class="frame" id="frame1">
+        <div class="note">
+          <div class="title">İlk Karşılaşmamız (İlişkimizin)</div>
+          <p>Gerçekten o haftasonu çok garip gelmişti o kadar karmaşık geçen 2 haftanın ardından wow nasıl yani demiştim ve gece gelip 
+            senin 'E hadi o zaman' demen beni çok garip hissettirdi çünkü çok çekingen bakıyor gibiydin bu konuya bazı şeylerin daha yere sağlam
+          basan ve mantıklı bir anı bekliyordun en azından öyle söylüyordun. İçimden neyi doğru yaptığımdan ve fikrini neyi değiştirdiğini hep 
+        merak ettimm </p>
+        </div>
+        
+        <div class="photo-space">
+          <img src="IMG-20250102-WA0082.jpg" alt="İlk fotoğrafımız">
+        </div>
+        
+        <div class="torn-paper">
+          <div class="title">Peki ben ne hissettim</div>
+          <p>Yalan değil ciddi bir ilişki beni çok korkutuyordu ancak yüzüne baktığım an, eline dokunduğum an dedim ki kaybedicek hiçbir
+            şeyim yok ama kazanabileceğim melek gibi bir insan var.
+          </p>
+        </div>
+      </div>
+      
+      <div class="frame" id="frame2">
+        <div class="heart-border">
+          <div class="title">Ailemiz Büyüdü</div>
+          <p>İlişkimizde bahsetmekten asla vazgeçemiceğim bir şey var o da tatlı bebişlerimiz. Yalan değil korktum çekindim başta 2ydi sonra 4 oldu 
+            başka çocuklarımızın hayalini kurduk bambaşka çocuklarımız oldu. Hani gerçek anlamda vay aq diyorum geçmişe bakıp 'Olum ben bu riski nasıl
+            aldım lan ' diyorum şu an oha yani REWKJNRJENR. Ama şu an harika bir vakit geçiriyorum ve çok mutluyum. DIPNOT: Honey'i Olimpiyatlara hazırlamayı
+          planlıyorummm </p>
+        </div>
+        
+        <div class="photo-space">
+          <img src="IMG_0800.jpg" alt="Özel anımız">
+        </div>
+        
+        <div class="note">
+          <div class="title">Beni En Çok Sen Rahatlattın</div>
+          <p>Korkularım vardı belki güçlü duramadım belki güçsüz gözüktüm senin gözünde ancak tek bir şey var asla keşke demedim. Neden biliyor 
+            musun çünkü her ayağım tökezlediğinde beni elimden tutup o kadar güzel kaldırdın ki her seferinde sana kör kütük aşık oldum bebeğimmm benimmm
+
+          </p>
+        </div>
+      </div>
+      
+      <div class="frame" id="frame3">
+        <div class="torn-paper">
+          <div class="title">Pardon Melek Misiniz</div>
+          <p>Gerçekten bu sormak istediğim net şey aşkım melek misin bu kadar iyi olma çok ciddiyim. Hani ben böyle ağlak ağlak sana geliyorum
+            işte aşkım ilgisizsin, aşkım şöyle böyle tripli davranıyorum bi bakıyorum olayı mükemmel bir şekilde bana açıklayan bana kendinin durumunu
+            açıklayan bir tanrıça görüyorum yani hayatım kendine geeeeel. Allahın senin için cennetin üstüne bir katman daha koyması gerekicek.
+          </p>
+        </div>
+        
+        <div class="photo-space">
+          <img src="IMG_0855 (1).jpg" alt="Mutlu bir anımız">
+        </div>
+        
+        <div class="heart-border">
+          <div class="title">Seni Çok Seviyorum</div>
+          <p>
+            Tanrı şairane yüzünden ilham alıp yaratmış evreni,<br>
+            Melekleri sana hayran, nurdan yapmış o kalbini,.<br>
+            Her bakışın yıldızlara ışık oluyor, gökler aydınlanıyor<br>
+            Sil ağzının kenarını, yine gülüşünden cennet akıyor..
+
+        </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <div class="container">
+      <p>❤️ Seni Çok Seviyorum ❤️</p>
+    </div>
+  </footer>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const frames = document.querySelectorAll('.frame');
+      
+      function checkScroll() {
+        frames.forEach(frame => {
+          const frameTop = frame.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          
+          if (frameTop < windowHeight * 0.8) {
+            frame.classList.add('visible');
+          }
+        });
+      }
+      
+      // İlk yükleme kontrolü
+      checkScroll();
+      
+      // Kaydırma sırasında kontrol
+      window.addEventListener('scroll', checkScroll);
+    });
+  </script>
+</body>
+</html>
